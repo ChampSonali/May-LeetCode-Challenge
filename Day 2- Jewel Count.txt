@@ -1,0 +1,31 @@
+Jewel Count
+
+/* I came up with HashMap (key,value) pair solution by storing the each stone with its count.Key here is each char of string stone and Value here the the number of times it has occured.For each jewel check if it is there in the stone map and add the count to the answer.*/
+
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+       
+         HashMap<Character,Integer> smap=new HashMap<>();
+        
+        for(int i=0;i<S.length();i++){
+            if(smap.containsKey(S.charAt(i))){
+                int value=smap.get(S.charAt(i));
+                smap.put(S.charAt(i),value+1);
+            }else
+                smap.put(S.charAt(i),1);
+        }
+        int count=0;
+        for(int i=0;i<J.length();i++){
+            if(smap.containsKey(J.charAt(i)))
+                count=count+ smap.get(J.charAt(i));
+        }
+        return count;
+    }
+}
+
+
+
+
+Time Complexity: O(J.length+S.length)
+Space Complexity: O(S.length)
+ 
