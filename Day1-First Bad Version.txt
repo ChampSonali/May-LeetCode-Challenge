@@ -1,0 +1,24 @@
+First Bad Version
+/* I came up with the binary Search Approach as i need to search the first element after which all items in the array are bad and need to minimize the call to the isBadVersion(version) function*/
+
+public class Solution extends VersionControl {
+    
+    public int firstBadVersion(int n) {
+    
+        int left=1,right=n, ans=-1;
+       
+        while(right>=left){
+            int mid=left + (right-left) / 2;
+            if( isBadVersion(mid)){
+				ans=mid
+                right = mid-1;
+            }else{
+                left= mid + 1;
+            }   
+        }
+        return ans;
+    }
+}
+
+Time Complexity= 0(log n)
+Space Complexity= 0(1);
