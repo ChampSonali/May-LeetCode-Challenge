@@ -1,0 +1,19 @@
+/* Approach I have used Flip bit by bit aaproach*/
+
+class Solution {
+    public int findComplement(int num) {
+       
+        if (num == 0) return 1;
+    int todo = num, bit = 1;
+    while (todo != 0) {
+       num = num ^ bit;
+      
+        bit = bit << 1;
+      todo = todo >> 1;
+    }
+    return num;
+    }
+}
+
+Time Compexity: O(1)
+Space Complexity: O(1)
