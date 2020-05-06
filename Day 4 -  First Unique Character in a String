@@ -1,0 +1,19 @@
+/* The indexOf() method returns the position of the first occurrence of specified character(s) in a string.
+And lastIndexOf method to return the position of the last occurrence of specified character(s) in a string.*/
+
+class Solution {
+    public int firstUniqChar(String s) {
+     int res=Integer.MAX_VALUE;
+        for(char c='a';c<='z';c++){
+            int index=s.indexOf(c);
+            if(index!=-1 && index==s.lastIndexOf(c))
+                res=Math.min(res,index);
+        }
+        return res==Integer.MAX_VALUE ? -1:res;
+    }
+}
+
+104 / 104 test cases passed.
+Status: Accepted
+Runtime: 1 ms
+Memory Usage: 40.2 MB
