@@ -1,0 +1,19 @@
+class Solution {
+    public int findJudge(int N, int[][] trust) {
+        boolean trust_some[]=new boolean[N+1];
+        int in_come[]=new int[N+1];
+        
+        for(int i=0;i<trust.length;i++){
+            int dest=trust[i][1];
+            int src=trust[i][0];
+            trust_some[src]=true;
+            in_come[dest]++;
+        }
+        for(int i=1;i<=N;i++){
+            if(in_come[i]==N-1 && !trust_some[i])
+                return i;
+        }
+        
+      return -1;  
+    }
+}
