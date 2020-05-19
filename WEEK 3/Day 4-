@@ -1,0 +1,27 @@
+Approach used her is Sliding window 
+ public boolean checkInclusion(String s1, String s2) {
+     
+        if(s2.length()<s1.length())
+            return false;
+        int one[]=new int[26];
+        int two[]=new int[26];
+        for(int i=0;i<s1.length();i++){
+            one[s1.charAt(i)-'a']++;
+            two[s2.charAt(i)-'a']++;
+        }
+        
+        for(int i=0;i<s2.length()-s1.length();i++){
+            if(match(one,two))
+                return true;
+            two[s2.charAt(i)-'a']--;
+            two[s2.charAt(i+s1.length())-'a']++;
+        }
+        return match(one,two);
+    }
+    public boolean match(int[] a,int[] b){
+        for(int i=0;i<26;i++){
+            if(a[i]!=b[i])
+                return false;
+        }
+        return true;
+    }
