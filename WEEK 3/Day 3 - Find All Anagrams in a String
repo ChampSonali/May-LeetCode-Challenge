@@ -1,0 +1,49 @@
+** Approach used here is Sliding window Protocol.
+   public List<Integer> findAnagrams(String s, String p) {
+             
+        
+        List<Integer> result = new ArrayList<>();
+        int len=0;
+        int a[]=new int[26];
+        int copy[]=new int[26];
+        for(char c : p.toCharArray()){
+            a[c-'a']++;
+            copy[c-'a']++;
+        }
+       for(int i=0;i<s.length();i++){
+           
+           if(a[s.charAt(i)-'a']>0){
+               a[s.charAt(i)-'a']-=1;
+               len++;
+           
+           }
+           else{
+           // this is the condition when element either does not exit in p or it is repeated
+               
+               //Case 1:Repeated elemet
+               if(copy[s.charAt(i)-'a']>0){
+               a[s.charAt(i-len)-'a']++;    //remove the first element by increasing the count
+               
+                   if(a[s.charAt(i)-'a']>0){
+                      a[s.charAt(i)-'a']--;
+                  }
+                   else{
+                       len--;
+                   }
+               }else
+               {
+                   // Case 2 element does no exits
+               len=0;
+               a = Arrays.copyOf(copy,26);
+               }
+           }
+           if(len==p.length()){
+               result.add(i-p.length()+1);
+                a[s.charAt(i-len+1)-'a']++;
+                   len--;
+           }
+           
+       }
+        
+        return result;
+    }
