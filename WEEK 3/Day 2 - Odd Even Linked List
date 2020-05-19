@@ -1,0 +1,14 @@
+ public ListNode oddEvenList(ListNode head) {
+        if(head==null) return null;
+        ListNode odd=head;
+        ListNode even=head.next;
+        ListNode evenHead=even;
+        while(even!=null && even.next!=null){
+            odd.next=even.next; //Changing Links
+            odd=odd.next; //move odd to 3
+            even.next=odd.next; //changing links
+            even=even.next; //move even to 5
+        }
+        odd.next=evenHead; //Add even LL to end of odd.
+        return head;
+    }
